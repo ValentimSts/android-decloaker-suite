@@ -244,7 +244,7 @@ enables each via `enable(id)` to test manually against a real sample.
 - `package.json` scripts: `build` (`frida-compile agent/index.ts -o _agent.js -c`),
   `build:dev` (sourcemaps, no compress), `watch` (`-w`).
 - Load: `frida -U -f <pkg> -l _agent.js` or `frida -U -p <pid> -l _agent.js`.
-- Package manager: none present yet; confirm npm vs pnpm before first install.
+- Package manager: **pnpm** (`pnpm-lock.yaml`). Use `pnpm install` / `pnpm run build`.
 
 ## 11. Documentation deliverables
 
@@ -266,7 +266,6 @@ enables each via `enable(id)` to test manually against a real sample.
 
 ## 13. Risks and open questions
 
-- Package manager choice (npm vs pnpm) - confirm before first install.
 - `frida-java-bridge` typings: confirm whether `@types` are needed or the package
   ships its own; resolve at implementation.
 - Exact lexicon retune list requires user sign-off before landing.
