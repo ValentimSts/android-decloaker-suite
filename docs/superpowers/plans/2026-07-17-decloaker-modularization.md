@@ -198,7 +198,9 @@ git commit -m "test: add vitest harness and frida-globals shim"
 - [ ] **Step 1: Write `agent/types.ts`**
 
 ```ts
-import type { InvocationContext } from "frida-gum";
+// @types/frida-gum declares InvocationContext, NativePointer, CpuContext, etc.
+// as AMBIENT GLOBALS (no module exports), so reference them directly - do NOT
+// `import ... from "frida-gum"` (that module has no exports and fails to resolve).
 
 export type LogLevel = "detect" | "bypass" | "dump" | "setup" | "warn" | "info";
 
@@ -570,8 +572,8 @@ Expected: FAIL.
 
 ```ts
 import { config } from "../config";
-import type { CpuContext } from "frida-gum";
 
+// CpuContext / NativePointer are ambient frida-gum globals - do NOT import them.
 export function getNativeBacktrace(context: CpuContext): string {
   try {
     return Thread.backtrace(context, Backtracer.FUZZY)
