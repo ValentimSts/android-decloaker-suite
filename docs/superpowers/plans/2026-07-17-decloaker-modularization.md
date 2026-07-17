@@ -279,9 +279,9 @@ Expected: FAIL (cannot find `../agent/config`).
 import type { Config } from "./types";
 
 // Compile-time defaults. Mutated at runtime by rpc.ts.
-// NOTE: original decloaker.js shipped ACTIVE_BYPASS=true; the spec keeps the
-// documented default (observe-first) of OFF. If exact byte-for-byte parity with
-// the shipped file is required, flip activeBypass to true here.
+// Observe-first: activeBypass defaults OFF (confirmed with the user). The
+// original V28 file shipped ACTIVE_BYPASS=true, but its own comment documented
+// OFF; enable at runtime via rpc.setbypass(true) to deliberately defeat cloaking.
 export const config: Config = {
   activeBypass: false,
   dumpPayloads: false,
@@ -307,7 +307,7 @@ git add agent/config.ts tests/config.test.ts
 git commit -m "feat: add mutable config with compile-time defaults"
 ```
 
-> NOTE for the implementer: `decloaker.js` hardcoded `ACTIVE_BYPASS=true` and `TARGET_MODULES=["liblqcmyholfftjmi.so"]`. Those are sample-specific. The plan defaults to safe/empty; surface this in the task review so the user confirms the shipped defaults.
+> NOTE: shipped defaults confirmed with the user - `activeBypass: false` (observe-first) and `targetModules: []` (global). The original hardcoded `ACTIVE_BYPASS=true` and a sample-specific `TARGET_MODULES` are intentionally not carried over.
 
 ### Task 5: Dedup cache
 
@@ -778,16 +778,14 @@ export const TARGET_REGEX = new RegExp(
 export const TARGET_LOWER = TARGET_STRINGS.map((s) => s.toLowerCase());
 ```
 
-- [ ] **Step 4: STOP - lexicon retune sign-off gate**
+- [ ] **Step 4: Apply the approved lexicon retune**
 
-Before applying any token change, present this proposed retune to the user and get explicit approval. Do NOT change detection coverage silently.
-
-Proposed changes (from the analysis of false-positive-prone broad tokens):
-- DROP: `organic` (common English word), `mcc`, `mnc` (match as substrings of many benign identifiers).
+The retune is decided (user-approved). Apply exactly:
+- DROP: `mcc`, `mnc` (match as substrings of many benign identifiers).
 - NARROW: `timezone` -> `persist.sys.timezone`.
-- KEEP (reconsidered, judged specific enough): `.bundle`, `adb_enabled`, `type_vpn`.
+- KEEP (deliberately retained): `organic` (heavily used in campaign/conversion-data cloaking), `.bundle`, `adb_enabled`, `type_vpn`, and every other current token.
 
-Record the user's decision in the commit body. If the user defers, keep tokens as-is and note it.
+Add assertions to `tests/lexicon.test.ts`: `mcc`/`mnc` are absent from `TARGET_STRINGS`, `persist.sys.timezone` is present, bare `timezone` is not, and `organic` is retained. Record the retune in the commit body.
 
 - [ ] **Step 5: Run test to verify it passes**
 
@@ -1056,7 +1054,7 @@ Handlers that stash fields on `this` type it as `IC` (from `../types`). Do not a
 | 29 | memory-unpacking | 3548-3783 | no | true | mprotect, mmap, memfd_create, munmap, remap_file_pages | `protStr`/`maybeDumpExecRegion`/`PROT_*`/`MAP_ANONYMOUS` locals; mprotect/mmap/munmap/remap attaches gated on `config.hookMemoryProtection` (memfd_create always on); memfd onLeave captures `ctx` |
 | 30 | reflection | 3784-3989 | yes | true | REFLECTION | pure Java bridge; `reflectBacktrace`/`logReflect`/`fieldName` nested in perform; impl `this` is the Java reflect wrapper |
 | 31 | anti-debug-native | 3990-4266 | no | true | ANTI-DEBUG, BYPASS, TIMING | `_antiDbgSeen`/`ANTIDBG_SIGNALS`/`PR_*`/`TIMING_*`/`_timingCounts` locals; prctl/getppid stash `this.ctx`; bypass gated |
-| 32 | property-modern | 4267-4397 | no | false-see-note | (prop read) | **NativeCallback trampolines**: `PROP_CB_TRAMPOLINES` registry MUST persist for process lifetime (GC hazard); `makePropReadTrampoline` reassigns `args[1]`; trampoline passes `null` trace to `scan`. dflt: keep `true` (it was active), see note below table |
+| 32 | property-modern | 4267-4397 | no | true | (prop read) | **NativeCallback trampolines**: `PROP_CB_TRAMPOLINES` registry MUST persist for process lifetime (GC hazard); `makePropReadTrampoline` reassigns `args[1]`; trampoline passes `null` trace to `scan`. dflt: keep `true` (it was active), see note below table |
 | 33 | net-c2-native | 4398-4564 | no | true | C2 CONNECT, DNS | `parseSockaddrC2`/`compactIPv6` locals; sockaddr endianness load-bearing (G-PTR); per-iteration `let cfg`/`dnsPtr` |
 | 34 | net-c2-java | 4565-4984 | yes | true | NET-C2, TLS-PIN, WS-INBOUND, BYPASS | `_PermissiveTM` tri-state cache (registerClass once); `getPermissiveTrustManager`/`javaBacktrace`/`chainToList`/`firstStringArg` locals; `ov.apply(this, arguments)` generic overload; `& 0xff` byte normalize; bypass gated |
 | 35 | behavior-ipc | 4985-5442 | yes | true | SMS, A11Y, CONTENT, EXEC, PKG, PROC, IPC, CLIP | `preview`/`report`/`flagSensitiveUri`/`argvToStr`/`intentStr`/`clipStr` nested in perform; impl `this` is Java instance; bypass gated |
