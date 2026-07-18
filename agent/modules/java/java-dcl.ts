@@ -4,9 +4,9 @@
 // InMemoryDexClassLoader) - a common technique for loading a second-stage
 // payload dex/jar at runtime to dodge static analysis of the APK.
 
-import { Java } from "../core/java";
-import { log } from "../core/logger";
-import type { DecloakerModule } from "../types";
+import { Java } from "../../core/java";
+import { log } from "../../core/logger";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "DCL";
 

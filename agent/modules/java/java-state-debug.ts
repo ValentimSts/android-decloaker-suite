@@ -19,14 +19,14 @@
 // hookSqliteNative runs first and does NOT need Java, so it installs even when
 // the Java VM is unavailable - matching the legacy ordering exactly.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import { Java, withJava } from "../core/java";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import { Java, withJava } from "../../core/java";
+import type { IC, DecloakerModule } from "../../types";
 
 // Legacy embedded three inline log tags: ANTI-DEBUG, PREFS, SQLITE. All three
 // preserved here; mod.tag reports the primary one (ANTI-DEBUG).

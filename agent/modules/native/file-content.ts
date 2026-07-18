@@ -13,13 +13,13 @@
 // Catches: TracerPid in /proc/self/status, frida/gum in /proc/self/maps, magisk in
 // /proc/mounts, port 27042 in /proc/net/tcp, and DEX/ELF/ZIP magic in dropped payloads.
 
-import { getExportSafe, readStrSafe, payloadMagic, dumpBuffer } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { scan } from "../filters/matcher";
-import { TARGET_REGEX } from "../filters/lexicon";
-import type { IC, DecloakerModule } from "../types";
+import { getExportSafe, readStrSafe, payloadMagic, dumpBuffer } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { scan } from "../../filters/matcher";
+import { TARGET_REGEX } from "../../filters/lexicon";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "FILE-CONTENT";
 

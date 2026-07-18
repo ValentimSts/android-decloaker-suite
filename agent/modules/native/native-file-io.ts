@@ -6,13 +6,13 @@
 // spoofer covering the full libc file I/O surface (open/openat/fopen/access/faccessat/
 // __system_property_get and the stat/lstat/statx family) into one module.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import { pathIsSpoofable } from "../filters/lexicon";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import { pathIsSpoofable } from "../../filters/lexicon";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "FILE-IO";
 

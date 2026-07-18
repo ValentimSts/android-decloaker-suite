@@ -16,13 +16,13 @@
 // produced (outlen > 0), so an empty or failed crypto op emits nothing. Buffer previews are
 // bounded by CRYPTO_PREVIEW_CAP to keep hex formatting cheap on large payloads.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, hexPreview, payloadMagic, dumpBuffer } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, hexPreview, payloadMagic, dumpBuffer } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "CRYPTO";
 

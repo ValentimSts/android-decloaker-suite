@@ -15,13 +15,13 @@
 // expressions (frida-java-bridge rebinds `this` per call) with `this`/params
 // typed `any` to satisfy noImplicitAny.
 
-import { config } from "../config";
-import { C, log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { hexPreview, payloadMagic, dumpBuffer } from "../core/memory";
-import { scan } from "../filters/matcher";
-import { Java, withJava, jbytesToHex, jbytesToPrintable, jbytesToNative, jbytesSlice } from "../core/java";
-import type { DecloakerModule } from "../types";
+import { config } from "../../config";
+import { C, log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { hexPreview, payloadMagic, dumpBuffer } from "../../core/memory";
+import { scan } from "../../filters/matcher";
+import { Java, withJava, jbytesToHex, jbytesToPrintable, jbytesToNative, jbytesSlice } from "../../core/java";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "CRYPTO";
 

@@ -17,11 +17,11 @@
 // listeners on the same address, so attaching again here (for JNI_OnLoad
 // discovery only) is safe and intentional.
 
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe, hexPreview, payloadMagic, dumpBuffer } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe, hexPreview, payloadMagic, dumpBuffer } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "ART-DEX";
 const JNI_TAG = "JNI_OnLoad";

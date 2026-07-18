@@ -16,11 +16,11 @@
 // allowlist) and let scan()'s own dedup keep repeated identical (name,value) pairs silent.
 // No spoofing here (detection-only), so no activeBypass / pathIsSpoofable path is taken.
 
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "PROP-MODERN";
 

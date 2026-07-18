@@ -13,33 +13,33 @@ import { config } from "../config";
 import { log } from "../core/logger";
 import { Java } from "../core/java";
 
-import unityIl2cpp from "./unity-il2cpp";
-import nativeFileIo from "./native-file-io";
-import deepExecution from "./deep-execution";
-import rawSyscalls from "./raw-syscalls";
-import libraryLoading from "./library-loading"; // disabled
-import javaNativeLoaders from "./java-native-loaders"; // disabled
-import systemProperties from "./system-properties";
-import javaDcl from "./java-dcl";
-import javaEvasion from "./java-evasion";
-import networkTraffic from "./network-traffic";
-import stringsNative from "./strings-native"; // disabled
-import libart from "./libart";
-import jniEnv from "./jni-env";
-import jniExtended from "./jni-extended";
-import artDexLoaders from "./art-dex-loaders";
-import fileContent from "./file-content";
-import fsRecon from "./fs-recon";
-import cryptoJava from "./crypto-java";
-import cryptoNative from "./crypto-native";
-import memoryUnpacking from "./memory-unpacking";
-import reflection from "./reflection";
-import antiDebugNative from "./anti-debug-native";
-import propertyModern from "./property-modern";
-import netC2Native from "./net-c2-native";
-import netC2Java from "./net-c2-java";
-import behaviorIpc from "./behavior-ipc";
-import javaStateDebug from "./java-state-debug"; // disabled
+import unityIl2cpp from "./unity/unity-il2cpp";
+import nativeFileIo from "./native/native-file-io";
+import deepExecution from "./native/deep-execution";
+import rawSyscalls from "./native/raw-syscalls";
+import libraryLoading from "./native/library-loading"; // disabled
+import javaNativeLoaders from "./java/java-native-loaders"; // disabled
+import systemProperties from "./native/system-properties";
+import javaDcl from "./java/java-dcl";
+import javaEvasion from "./java/java-evasion";
+import networkTraffic from "./native/network-traffic";
+import stringsNative from "./native/strings-native"; // disabled
+import libart from "./jni/libart";
+import jniEnv from "./jni/jni-env";
+import jniExtended from "./jni/jni-extended";
+import artDexLoaders from "./jni/art-dex-loaders";
+import fileContent from "./native/file-content";
+import fsRecon from "./native/fs-recon";
+import cryptoJava from "./java/crypto-java";
+import cryptoNative from "./native/crypto-native";
+import memoryUnpacking from "./native/memory-unpacking";
+import reflection from "./java/reflection";
+import antiDebugNative from "./native/anti-debug-native";
+import propertyModern from "./native/property-modern";
+import netC2Native from "./native/net-c2-native";
+import netC2Java from "./java/net-c2-java";
+import behaviorIpc from "./java/behavior-ipc";
+import javaStateDebug from "./java/java-state-debug"; // disabled
 
 export const registry: DecloakerModule[] = [
   unityIl2cpp,

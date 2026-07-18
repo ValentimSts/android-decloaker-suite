@@ -13,11 +13,11 @@
 // name actually matches the evasion lexicon, so these hooks never flood the console or stall
 // the app on a non-match.
 
-import { Java, withJava } from "../core/java";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { scan } from "../filters/matcher";
-import type { DecloakerModule } from "../types";
+import { Java, withJava } from "../../core/java";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { scan } from "../../filters/matcher";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "REFLECTION";
 

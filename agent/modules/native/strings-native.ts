@@ -10,12 +10,12 @@
 // routes through the shared matcher. The module also installs a native strstr
 // NULL-argument guard for stability. Disabled by default.
 
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import { TARGET_STRINGS } from "../filters/lexicon";
-import type { DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import { TARGET_STRINGS } from "../../filters/lexicon";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "CModule";
 

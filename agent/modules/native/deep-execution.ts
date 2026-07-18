@@ -5,12 +5,12 @@
 // detect a debugger via PTRACE_TRACEME, and (c) resolve /proc/self paths
 // that leak the real package/process identity.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "EXEC";
 

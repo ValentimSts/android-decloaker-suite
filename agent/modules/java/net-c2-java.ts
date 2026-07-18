@@ -7,11 +7,11 @@
 // routed through scan() (legacy checkAndLog) for lexicon matching in addition to
 // the explicit observation log line.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { scan } from "../filters/matcher";
-import { Java, withJava } from "../core/java";
-import type { DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { scan } from "../../filters/matcher";
+import { Java, withJava } from "../../core/java";
+import type { DecloakerModule } from "../../types";
 
 // Legacy embedded several inline tags: NET-C2 (endpoints), TLS-PIN (pinning/trust
 // surfaces), and WS-INBOUND / WS-INBOUND-BINARY (OkHttp WebSocket frames). The RED

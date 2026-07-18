@@ -7,13 +7,13 @@
 // before TLS encrypts them on write, after TLS decrypts them on read - for JSON
 // payloads or target-lexicon string matches.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, hexPreview } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, hexPreview } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 // Legacy embedded two distinct log tags: NETWORK (JSON payloads and the string
 // scan) and RAW-NET (binary/non-JSON frame hex dumps). Both preserved here.

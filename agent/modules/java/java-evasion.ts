@@ -5,12 +5,12 @@
 // telephony operators, sensor vendors, and BatteryManager/Intent battery properties
 // (100% capacity / always-charging) that give an emulator or sandbox away.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { Java, withJava } from "../core/java";
-import { scan } from "../filters/matcher";
-import type { DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { Java, withJava } from "../../core/java";
+import { scan } from "../../filters/matcher";
+import type { DecloakerModule } from "../../types";
 
 // Legacy embedded two distinct log tags inline: TELEPHONY (operator/sensor
 // announcements) and BATTERY (BatteryManager/Intent capacity + charging tells).

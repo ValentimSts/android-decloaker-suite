@@ -6,12 +6,12 @@
 // the vtable instead of a symbol - this is what makes the hook "universal"
 // across ART implementations.
 
-import type { DecloakerModule, IC } from "../types";
-import { Java, withJava } from "../core/java";
-import { log } from "../core/logger";
-import { isTargetCaller, getNativeBacktrace } from "../core/backtrace";
-import { readStrSafe } from "../core/memory";
-import { scan } from "../filters/matcher";
+import type { DecloakerModule, IC } from "../../types";
+import { Java, withJava } from "../../core/java";
+import { log } from "../../core/logger";
+import { isTargetCaller, getNativeBacktrace } from "../../core/backtrace";
+import { readStrSafe } from "../../core/memory";
+import { scan } from "../../filters/matcher";
 
 const TAG = "JNIEnv table";
 

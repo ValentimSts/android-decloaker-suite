@@ -11,9 +11,9 @@
 // libil2cpp.so is frequently mapped a moment after process start, so install() polls
 // for it every 500ms and only wires the hooks once it appears, then clears the poll.
 
-import { log } from "../core/logger";
-import { getExportSafe, hexPreview } from "../core/memory";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { getExportSafe, hexPreview } from "../../core/memory";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "UNITY CRYPTO";
 

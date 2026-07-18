@@ -11,8 +11,8 @@
 // is risky enough (loader re-entrancy, JNI_OnLoad timing, perf overhead on a
 // hot path) that it is opt-in only.
 
-import { safeAttachDetect } from "../core/attach";
-import type { DecloakerModule } from "../types";
+import { safeAttachDetect } from "../../core/attach";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "DLOPEN";
 

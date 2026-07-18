@@ -5,11 +5,11 @@
 // config.activeBypass is on, in which case a handful of well-known
 // emulator-tell properties get their value buffer overwritten in place.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "SYS-PROP";
 

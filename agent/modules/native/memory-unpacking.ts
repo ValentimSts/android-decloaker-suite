@@ -6,13 +6,13 @@
 // a native unpacker uses to stage a decrypted payload in memory, flip it executable,
 // and (sometimes) tear the evidence back down afterwards.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe, hexPreview, payloadMagic, dumpBuffer } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe, hexPreview, payloadMagic, dumpBuffer } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "MEM-UNPACK";
 

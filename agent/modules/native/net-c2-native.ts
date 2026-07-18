@@ -9,12 +9,12 @@
 // the same endpoint print once. connect() is a per-socket call (not a per-byte hot
 // path like read/recv), so per-endpoint dedup is sufficient to prevent flooding.
 
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 // Legacy embedded two distinct log tags inline: C2 CONNECT (the outbound socket
 // destination) and DNS (resolved hostnames). Both preserved here.

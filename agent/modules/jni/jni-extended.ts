@@ -22,13 +22,13 @@
 // the name+sig map built from GetMethodID / GetStaticMethodID returns (they return the
 // jmethodID as the retval).
 
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { readStrSafe, payloadMagic, dumpBuffer } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { Java, withJava } from "../core/java";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { readStrSafe, payloadMagic, dumpBuffer } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { Java, withJava } from "../../core/java";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "JNI";
 

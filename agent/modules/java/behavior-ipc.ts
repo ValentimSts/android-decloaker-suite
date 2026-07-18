@@ -12,12 +12,12 @@
 // dedup-gated via the shared hasSeen/markSeen (keyed on event type + package) to avoid
 // flooding the console and hanging the app UI - the one hot path in an otherwise cold module.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { Java, withJava } from "../core/java";
-import { scan } from "../filters/matcher";
-import type { DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { Java, withJava } from "../../core/java";
+import { scan } from "../../filters/matcher";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "BEHAVIOR-IPC";
 

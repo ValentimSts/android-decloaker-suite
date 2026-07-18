@@ -4,12 +4,12 @@
 // bypass libc-export hooks. Only arm64 and x86_64 (the common Android ABIs) are covered;
 // inlined SVC/int 0x80 instructions still evade this and would need Stalker instrumentation.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "SYSCALL";
 

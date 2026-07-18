@@ -10,14 +10,14 @@
 // gettimeofday timing-check primitives. Detection-only except for the prctl
 // PR_GET_NAME thread-name spoof, which is gated on config.activeBypass.
 
-import { config } from "../config";
-import { log } from "../core/logger";
-import { hasSeen, markSeen } from "../core/dedup";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import { pathIsSpoofable } from "../filters/lexicon";
-import type { IC, DecloakerModule } from "../types";
+import { config } from "../../config";
+import { log } from "../../core/logger";
+import { hasSeen, markSeen } from "../../core/dedup";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, formatBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import { pathIsSpoofable } from "../../filters/lexicon";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "ANTI-DEBUG";
 

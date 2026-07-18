@@ -4,11 +4,11 @@
 // opposed to hooking through a live JNIEnv struct), so it catches native
 // binding activity even before/around any JNIEnv-based hooks are set up.
 
-import { log } from "../core/logger";
-import { readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { scan } from "../filters/matcher";
-import type { DecloakerModule, IC } from "../types";
+import { log } from "../../core/logger";
+import { readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { scan } from "../../filters/matcher";
+import type { DecloakerModule, IC } from "../../types";
 
 const TAG = "JNI";
 

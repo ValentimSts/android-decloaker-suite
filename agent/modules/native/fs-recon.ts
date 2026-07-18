@@ -18,12 +18,12 @@
 //     every entry name (directory contents are exactly where the artifact name
 //     shows up) but log at most once per unique name.
 
-import { log } from "../core/logger";
-import { getExportSafe, readStrSafe } from "../core/memory";
-import { getNativeBacktrace, isTargetCaller } from "../core/backtrace";
-import { safeAttachDetect } from "../core/attach";
-import { scan } from "../filters/matcher";
-import type { IC, DecloakerModule } from "../types";
+import { log } from "../../core/logger";
+import { getExportSafe, readStrSafe } from "../../core/memory";
+import { getNativeBacktrace, isTargetCaller } from "../../core/backtrace";
+import { safeAttachDetect } from "../../core/attach";
+import { scan } from "../../filters/matcher";
+import type { IC, DecloakerModule } from "../../types";
 
 const TAG = "FS-RECON";
 

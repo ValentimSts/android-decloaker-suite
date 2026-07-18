@@ -15,9 +15,9 @@
 // Here isSystemLib is a real check: a path under /system/ or /apex/, or a
 // known-framework library basename.
 
-import { Java, withJava } from "../core/java";
-import { log } from "../core/logger";
-import type { DecloakerModule } from "../types";
+import { Java, withJava } from "../../core/java";
+import { log } from "../../core/logger";
+import type { DecloakerModule } from "../../types";
 
 const TAG = "NATIVE LOAD";
 

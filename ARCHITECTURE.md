@@ -29,7 +29,10 @@ agent/
     matcher.ts        scan(): the single-pass hot path
   modules/
     index.ts          registry (dispatch order) + installAll() dispatcher
-    <27 module files> one detection category each
+    native/           14 pure-native hook modules (libc/syscall/memory)
+    jni/              4 ART/JNI runtime-bridge modules (libart + JNIEnv vtable)
+    java/             8 frida-java-bridge modules (Java API hooks)
+    unity/            1 il2cpp module
 ```
 
 Tests live in `tests/` (Vitest, pure-logic only) and are excluded from the
