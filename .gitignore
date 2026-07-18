@@ -1,0 +1,5 @@
+node_modules/
+dist/
+_agent.js
+_agent.js.map
+*.log

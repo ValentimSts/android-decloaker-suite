@@ -1,0 +1,23 @@
+{
+  "name": "android-decloaker-suite",
+  "version": "0.1.0",
+  "description": "Frida script suite for Android app analysis",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "frida-compile agent/index.ts -o _agent.js -S -c",
+    "build:dev": "frida-compile agent/index.ts -o _agent.js",
+    "watch": "frida-compile agent/index.ts -o _agent.js -w",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/frida-gum": "^19.10.0",
+    "frida-compile": "^19.0.5",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "frida-java-bridge": "^7.0.13"
+  }
+}
