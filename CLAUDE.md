@@ -12,9 +12,10 @@ script (`decloaker.js`, "Sigma Decloaker V28") into a modular TypeScript agent
 compiled with `frida-compile`. Detection tokens and bypass semantics are meant
 to be preserved across the port, not changed.
 
-`decloaker.js` is untracked but kept on disk deliberately: it is the
-**source-of-truth reference for porting** each module (module files cite exact
-line ranges from it). Do not delete it without asking.
+The original monolith is retained at `legacy/decloaker-v28.js` as the
+**source-of-truth reference for the port** (module files cite exact line ranges
+from it). The port is complete and verified at parity; the legacy file is kept
+for historical comparison, not active development.
 
 ## Commands
 
