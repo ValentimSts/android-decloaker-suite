@@ -18,6 +18,10 @@ describe("scan", () => {
     expect(scan("TEST", "totally benign string")).toBe(false);
   });
 
+  it("returns the canonical lexicon casing, not the source casing", () => {
+    expect(scan("TEST", "found /data/superuser.apk on disk")).toBe("Superuser.apk");
+  });
+
   it("logs a detection only once per signature", () => {
     const spy = console.log as unknown as ReturnType<typeof vi.fn>;
     scan("TEST", "frida-server running");
