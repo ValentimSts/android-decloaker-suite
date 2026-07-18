@@ -81,6 +81,17 @@ export const TARGET_STRINGS = [
 // Precomputed lowercase copy of the lexicon (avoids re-lowercasing constants on every hot-path check).
 export const TARGET_LOWER = TARGET_STRINGS.map((s) => s.toLowerCase());
 
+// Maps a lowercased token back to its canonical TARGET_STRINGS spelling, so the
+// matcher can report a stable, canonical token even though matching is case-insensitive.
+export const CANON_BY_LOWER: Record<string, string> = (() => {
+  const m: Record<string, string> = {};
+  for (let i = 0; i < TARGET_STRINGS.length; i++) {
+    const k = TARGET_LOWER[i];
+    if (m[k] === undefined) m[k] = TARGET_STRINGS[i];
+  }
+  return m;
+})();
+
 // Escape ALL regex metacharacters (not just "."), so tokens like "market://details?id=" are
 // matched literally and cannot silently drift or throw when the RegExp is built. Single capture
 // group so the matcher can pull the matched token and its index out of one exec() call.
