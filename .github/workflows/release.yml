@@ -1,0 +1,77 @@
+name: release
+
+# Build the agent and publish a GitHub release whenever a version tag is pushed.
+# Cut a release by bumping package.json's version and pushing a matching tag:
+#   git tag v0.1.0 && git push origin v0.1.0
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Derive and verify version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PKG_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$VERSION" != "$PKG_VERSION" ]; then
+            echo "::error::tag ${GITHUB_REF_NAME} does not match package.json version ${PKG_VERSION}"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Build agent
+        run: pnpm run build
+
+      - name: Package and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp _agent.js "androidDecloaker-${VERSION}.js"
+          cat > release-notes.md <<'EOF'
+          Prebuilt Android Decloaker agent, ready to load into Frida.
+
+          ## Assets
+          - `androidDecloaker-__VERSION__.js` - the compiled agent.
+          - `androidDecloaker-loader.py` - host-side loader (turnkey active bypass).
+
+          ## Run it
+          Plain Frida (observe-only):
+
+              frida -U -f com.example.app -l androidDecloaker-__VERSION__.js
+
+          Loader (active bypass on by default, `--observe` to opt out):
+
+              python androidDecloaker-loader.py -f com.example.app
+
+          The device's `frida-server` must match this build's Frida runtime (Frida 17).
+          EOF
+          sed -i "s/__VERSION__/${VERSION}/g" release-notes.md
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "Android Decloaker v${VERSION}" \
+            --notes-file release-notes.md \
+            "androidDecloaker-${VERSION}.js" \
+            "tools/androidDecloaker-loader.py"
